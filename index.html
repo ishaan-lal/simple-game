@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Tetris</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <h1>TETRIS</h1>
+
+    <div class="layout">
+      <aside class="panel side">
+        <section>
+          <h2>Hold</h2>
+          <canvas id="hold" class="mini"></canvas>
+        </section>
+        <section class="stats">
+          <div class="stat"><span>Score</span><strong id="score">0</strong></div>
+          <div class="stat"><span>Lines</span><strong id="lines">0</strong></div>
+          <div class="stat"><span>Level</span><strong id="level">1</strong></div>
+          <div class="stat"><span>Best</span><strong id="best">0</strong></div>
+        </section>
+      </aside>
+
+      <div class="board-wrap">
+        <canvas id="board" class="board"></canvas>
+        <div id="overlay" class="overlay hidden">
+          <p id="overlay-title">Paused</p>
+          <p id="overlay-text">Press P to resume</p>
+        </div>
+      </div>
+
+      <aside class="panel side">
+        <section>
+          <h2>Next</h2>
+          <canvas id="next" class="mini tall"></canvas>
+        </section>
+        <button id="restart" class="btn">New game</button>
+      </aside>
+    </div>
+
+    <div class="touch" aria-hidden="true">
+      <button data-act="left">←</button>
+      <button data-act="rotate">⟳</button>
+      <button data-act="right">→</button>
+      <button data-act="down">↓</button>
+      <button data-act="drop">DROP</button>
+      <button data-act="hold">HOLD</button>
+    </div>
+
+    <table class="keys">
+      <tbody>
+        <tr><th>← →</th><td>Move</td><th>↑ / X</th><td>Rotate right</td></tr>
+        <tr><th>↓</th><td>Soft drop</td><th>Z</th><td>Rotate left</td></tr>
+        <tr><th>Space</th><td>Hard drop</td><th>C / Shift</th><td>Hold</td></tr>
+        <tr><th>P</th><td>Pause</td><th>R</th><td>Restart</td></tr>
+      </tbody>
+    </table>
+  </main>
+
+  <script src="tetris.js"></script>
+</body>
+</html>
