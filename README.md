@@ -20,11 +20,11 @@ python3 -m http.server 8000   # then visit http://localhost:8000
 
 | Key | Action |
 | --- | --- |
-| `←` `→` | Move left / right (hold to repeat) |
+| `←` `→` or `A` `D` | Move left / right (hold to repeat) |
 | `↓` | Soft drop (+1 point per cell) |
 | `Space` | Hard drop (+2 points per cell) |
-| `↑` or `X` | Rotate clockwise |
-| `Z` | Rotate counter-clockwise |
+| `↑`, `X`, or `W` | Rotate clockwise |
+| `Z` or `S` | Rotate counter-clockwise |
 | `C` or `Shift` | Hold / swap piece (once per piece) |
 | `P` | Pause |
 | `R` | New game |

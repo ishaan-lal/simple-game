@@ -413,10 +413,14 @@
 
     switch (key) {
       case 'ArrowLeft':
+      case 'a':
+      case 'A':
         e.preventDefault();
         if (!e.repeat) { held.left = 1; held.right = 0; act('left'); }
         break;
       case 'ArrowRight':
+      case 'd':
+      case 'D':
         e.preventDefault();
         if (!e.repeat) { held.right = 1; held.left = 0; act('right'); }
         break;
@@ -427,11 +431,15 @@
       case 'ArrowUp':
       case 'x':
       case 'X':
+      case 'w':
+      case 'W':
         e.preventDefault();
         if (!e.repeat) act('rotate');
         break;
       case 'z':
       case 'Z':
+      case 's':
+      case 'S':
         e.preventDefault();
         if (!e.repeat) act('rotateLeft');
         break;
@@ -449,8 +457,8 @@
   });
 
   document.addEventListener('keyup', (e) => {
-    if (e.key === 'ArrowLeft') held.left = 0;
-    if (e.key === 'ArrowRight') held.right = 0;
+    if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') held.left = 0;
+    if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') held.right = 0;
     if (e.key === 'ArrowDown') softDropping = false;
   });
 
