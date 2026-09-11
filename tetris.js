@@ -413,18 +413,26 @@
 
     switch (key) {
       case 'ArrowLeft':
+      case 'a':
+      case 'A':
         e.preventDefault();
         if (!e.repeat) { held.left = 1; held.right = 0; act('left'); }
         break;
       case 'ArrowRight':
+      case 'd':
+      case 'D':
         e.preventDefault();
         if (!e.repeat) { held.right = 1; held.left = 0; act('right'); }
         break;
       case 'ArrowDown':
+      case 's':
+      case 'S':
         e.preventDefault();
         softDropping = true;
         break;
       case 'ArrowUp':
+      case 'w':
+      case 'W':
       case 'x':
       case 'X':
         e.preventDefault();
@@ -449,9 +457,9 @@
   });
 
   document.addEventListener('keyup', (e) => {
-    if (e.key === 'ArrowLeft') held.left = 0;
-    if (e.key === 'ArrowRight') held.right = 0;
-    if (e.key === 'ArrowDown') softDropping = false;
+    if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') held.left = 0;
+    if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') held.right = 0;
+    if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') softDropping = false;
   });
 
   window.addEventListener('blur', () => {
