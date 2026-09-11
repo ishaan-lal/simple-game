@@ -26,6 +26,15 @@ body {
   max-width: 720px;
 }
 
+.game-title {
+  position: fixed;
+  top: 12px;
+  left: 16px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+  color: var(--text);
+}
+
 h1 {
   margin: 0 0 18px;
   text-align: center;
