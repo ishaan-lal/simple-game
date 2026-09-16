@@ -126,6 +126,9 @@ h2 {
 
 .overlay.hidden { display: none; }
 
+.overlay .btn { margin-top: 4px; }
+.overlay .btn.hidden { display: none; }
+
 #overlay-title {
   margin: 0;
   font-size: 24px;

@@ -59,6 +59,7 @@
     overlayTitle: document.getElementById('overlay-title'),
     overlayText: document.getElementById('overlay-text'),
     restart: document.getElementById('restart'),
+    share: document.getElementById('share'),
   };
 
   // ------------------------------------------------------------------- state
@@ -143,6 +144,8 @@
       }
       updateStats();
       showOverlay('Game over', `Score ${score} — press R to play again`);
+      el.share.textContent = 'Share score';
+      el.share.classList.remove('hidden');
     }
   }
 
@@ -343,6 +346,7 @@
 
   function hideOverlay() {
     el.overlay.classList.add('hidden');
+    el.share.classList.add('hidden');
   }
 
   // -------------------------------------------------------------- game loop
@@ -461,6 +465,12 @@
 
   el.restart.addEventListener('click', reset);
   el.overlay.addEventListener('click', () => { if (gameOver) reset(); else togglePause(); });
+  el.share.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(String(score)).then(() => {
+      el.share.textContent = 'Copied!';
+    });
+  });
 
   document.querySelectorAll('.touch button').forEach((button) => {
     const name = button.dataset.act;
