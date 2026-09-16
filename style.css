@@ -1,5 +1,5 @@
 :root {
-  --bg: #10131a;
+  --bg: #1a0f2b;
   --panel: #1a1f2b;
   --line: #2b3340;
   --text: #e6e9ef;
@@ -14,7 +14,7 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  background: radial-gradient(1200px 600px at 50% -10%, #1b2233, var(--bg));
+  background: radial-gradient(1200px 600px at 50% -10%, #3a2262, var(--bg));
   color: var(--text);
   font: 14px/1.4 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   -webkit-tap-highlight-color: transparent;
