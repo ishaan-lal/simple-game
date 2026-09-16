@@ -59,7 +59,7 @@
     overlayTitle: document.getElementById('overlay-title'),
     overlayText: document.getElementById('overlay-text'),
     restart: document.getElementById('restart'),
-    share: document.getElementById('share'),
+    shareScore: document.getElementById('share-score'),
   };
 
   // ------------------------------------------------------------------- state
@@ -143,9 +143,7 @@
         localStorage.setItem('tetris-best', String(best));
       }
       updateStats();
-      showOverlay('Game over', `Score ${score} — press R to play again`);
-      el.share.textContent = 'Share score';
-      el.share.classList.remove('hidden');
+      showOverlay('Game over', `Score ${score} — press R to play again`, true);
     }
   }
 
@@ -338,15 +336,15 @@
     el.best.textContent = Math.max(best, score);
   }
 
-  function showOverlay(title, text) {
+  function showOverlay(title, text, showShare = false) {
     el.overlayTitle.textContent = title;
     el.overlayText.textContent = text;
+    el.shareScore.classList.toggle('hidden', !showShare);
     el.overlay.classList.remove('hidden');
   }
 
   function hideOverlay() {
     el.overlay.classList.add('hidden');
-    el.share.classList.add('hidden');
   }
 
   // -------------------------------------------------------------- game loop
@@ -465,10 +463,12 @@
 
   el.restart.addEventListener('click', reset);
   el.overlay.addEventListener('click', () => { if (gameOver) reset(); else togglePause(); });
-  el.share.addEventListener('click', (e) => {
+  el.shareScore.addEventListener('click', (e) => {
     e.stopPropagation();
-    navigator.clipboard.writeText(String(score)).then(() => {
-      el.share.textContent = 'Copied!';
+    navigator.clipboard.writeText(`I scored ${score} points in Tetris!`).then(() => {
+      const original = el.shareScore.textContent;
+      el.shareScore.textContent = 'Copied!';
+      setTimeout(() => { el.shareScore.textContent = original; }, 1500);
     });
   });
 

@@ -126,8 +126,8 @@ h2 {
 
 .overlay.hidden { display: none; }
 
-.overlay .btn { margin-top: 4px; }
-.overlay .btn.hidden { display: none; }
+#share-score { margin-top: 8px; }
+#share-score.hidden { display: none; }
 
 #overlay-title {
   margin: 0;
