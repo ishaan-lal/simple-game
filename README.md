@@ -28,6 +28,7 @@ python3 -m http.server 8000   # then visit http://localhost:8000
 | `C` or `Shift` | Hold / swap piece (once per piece) |
 | `P` | Pause |
 | `R` | New game |
+| `G` | Toggle ghost piece on/off |
 
 On phones and narrow screens, on-screen buttons appear below the board.
 

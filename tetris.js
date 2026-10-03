@@ -67,6 +67,7 @@
   let grid, active, holdPiece, holdUsed, queue, bag;
   let score, lines, level, dropTimer, dropInterval, paused, gameOver;
   let best = Number(localStorage.getItem('tetris-best') || 0);
+  let ghostEnabled = true;
 
   const held = { left: 0, right: 0 };   // timestamps for key-repeat
   let softDropping = false;
@@ -281,13 +282,15 @@
     if (gameOver) return;
 
     // Ghost: where a hard drop would land.
-    let ghostY = active.y;
-    while (!collides(active, active.shape, active.x, ghostY + 1)) ghostY++;
-    boardCtx.fillStyle = 'rgba(255, 255, 255, 0.12)';
-    for (let y = 0; y < active.shape.length; y++) {
-      for (let x = 0; x < active.shape.length; x++) {
-        if (active.shape[y][x] && ghostY + y >= 0) {
-          boardCtx.fillRect((active.x + x) * BLOCK, (ghostY + y) * BLOCK, BLOCK, BLOCK);
+    if (ghostEnabled) {
+      let ghostY = active.y;
+      while (!collides(active, active.shape, active.x, ghostY + 1)) ghostY++;
+      boardCtx.fillStyle = 'rgba(255, 255, 255, 0.12)';
+      for (let y = 0; y < active.shape.length; y++) {
+        for (let x = 0; x < active.shape.length; x++) {
+          if (active.shape[y][x] && ghostY + y >= 0) {
+            boardCtx.fillRect((active.x + x) * BLOCK, (ghostY + y) * BLOCK, BLOCK, BLOCK);
+          }
         }
       }
     }
@@ -411,6 +414,7 @@
 
     if (key === 'r' || key === 'R') { reset(); return; }
     if (key === 'p' || key === 'P') { e.preventDefault(); togglePause(); return; }
+    if (key === 'g' || key === 'G') { ghostEnabled = !ghostEnabled; return; }
     if (paused || gameOver) return;
 
     switch (key) {
