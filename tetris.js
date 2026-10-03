@@ -386,7 +386,7 @@
   function togglePause() {
     if (gameOver) return;
     paused = !paused;
-    if (paused) showOverlay('Paused', 'Press P to resume');
+    if (paused) showOverlay('PAUSED', 'Press P to resume');
     else hideOverlay();
   }
 
