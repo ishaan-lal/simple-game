@@ -26,6 +26,7 @@ python3 -m http.server 8000   # then visit http://localhost:8000
 | `↑` or `X` | Rotate clockwise |
 | `Z` | Rotate counter-clockwise |
 | `C` or `Shift` | Hold / swap piece (once per piece) |
+| `G` | Toggle ghost piece |
 | `P` | Pause |
 | `R` | New game |
 
@@ -41,7 +42,8 @@ On phones and narrow screens, on-screen buttons appear below the board.
   current level.
 - Level rises every 10 lines and gravity speeds up with it, from 800 ms per cell
   down to 50 ms.
-- A translucent ghost shows where a hard drop will land.
+- A translucent ghost shows where a hard drop will land. Press `G` to toggle
+  it off or back on.
 - Best score is kept in `localStorage`.
 
 ## Files
