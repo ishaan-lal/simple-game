@@ -1,6 +1,6 @@
-# Tetris
+# Blocks
 
-A small browser Tetris. No build step, no dependencies — three static files.
+A small browser Tetris-style game called Blocks. No build step, no dependencies — three static files.
 
 ## Play
 
