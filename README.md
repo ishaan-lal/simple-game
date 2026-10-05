@@ -42,8 +42,7 @@ On phones and narrow screens, on-screen buttons appear below the board.
   current level.
 - Level rises every 10 lines and gravity speeds up with it, from 800 ms per cell
   down to 50 ms.
-- A translucent ghost shows where a hard drop will land. Press `G` to toggle
-  it off or back on.
+- A translucent ghost shows where a hard drop will land.
 - Best score is kept in `localStorage`.
 
 ## Files
