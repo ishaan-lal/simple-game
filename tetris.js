@@ -66,7 +66,7 @@
 
   let grid, active, holdPiece, holdUsed, queue, bag;
   let score, lines, level, dropTimer, dropInterval, paused, gameOver;
-  let best = Number(localStorage.getItem('tetris-best') || 0);
+  let best = Number(localStorage.getItem('tetris-best-score') || 0);
 
   const held = { left: 0, right: 0 };   // timestamps for key-repeat
   let softDropping = false;
