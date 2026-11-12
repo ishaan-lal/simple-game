@@ -27,6 +27,8 @@
   const SPEEDS = [800, 720, 630, 550, 470, 380, 300, 220, 160, 120, 100, 85, 72, 60, 50];
   const LINE_SCORE = [0, 100, 300, 500, 800];
 
+  const SPRINT_LINES = 40;   // lines to clear to finish a sprint
+
   const DAS = 160;   // delay before a held move key repeats
   const ARR = 45;    // repeat interval for a held move key
 
@@ -59,6 +61,9 @@
     overlayTitle: document.getElementById('overlay-title'),
     overlayText: document.getElementById('overlay-text'),
     restart: document.getElementById('restart'),
+    mode: document.getElementById('mode'),
+    timeStat: document.getElementById('time-stat'),
+    time: document.getElementById('time'),
     shareScore: document.getElementById('share-score'),
   };
 
@@ -67,6 +72,9 @@
   let grid, active, holdPiece, holdUsed, queue, bag;
   let score, lines, level, dropTimer, dropInterval, paused, gameOver;
   let best = Number(localStorage.getItem('tetris-best') || 0);
+  let sprint = false;   // sprint mode: clear SPRINT_LINES lines as fast as possible
+  let elapsed = 0;
+  let bestTime = Number(localStorage.getItem('tetris-sprint-best') || 0);
 
   const held = { left: 0, right: 0 };   // timestamps for key-repeat
   let softDropping = false;
@@ -125,6 +133,7 @@
     level = 1;
     dropInterval = SPEEDS[0];
     dropTimer = 0;
+    elapsed = 0;
     paused = false;
     gameOver = false;
     spawn();
@@ -138,7 +147,7 @@
     holdUsed = false;
     if (collides(active)) {
       gameOver = true;
-      if (score > best) {
+      if (!sprint && score > best) {
         best = score;
         localStorage.setItem('tetris-best', String(best));
       }
@@ -216,7 +225,7 @@
     }
     clearLines();
     dropTimer = 0;
-    spawn();
+    if (!gameOver) spawn();
   }
 
   function clearLines() {
@@ -235,7 +244,31 @@
     score += LINE_SCORE[cleared] * level;
     level = Math.floor(lines / 10) + 1;
     dropInterval = SPEEDS[Math.min(level - 1, SPEEDS.length - 1)];
+    if (sprint && lines >= SPRINT_LINES) finishSprint();
     updateStats();
+  }
+
+  function finishSprint() {
+    gameOver = true;
+    const record = !bestTime || elapsed < bestTime;
+    if (record) {
+      bestTime = elapsed;
+      localStorage.setItem('tetris-sprint-best', String(bestTime));
+    }
+    showOverlay('Sprint complete', `${formatTime(elapsed)}${record ? ' — new best!' : ''} — press R to play again`);
+  }
+
+  function formatTime(ms) {
+    const minutes = Math.floor(ms / 60000);
+    const seconds = (ms % 60000) / 1000;
+    return `${minutes}:${seconds.toFixed(2).padStart(5, '0')}`;
+  }
+
+  function setMode(isSprint) {
+    sprint = isSprint;
+    el.mode.textContent = sprint ? 'Mode: Sprint' : 'Mode: Marathon';
+    el.timeStat.classList.toggle('hidden', !sprint);
+    reset();
   }
 
   // ------------------------------------------------------------------ render
@@ -333,7 +366,8 @@
     el.score.textContent = score;
     el.lines.textContent = lines;
     el.level.textContent = level;
-    el.best.textContent = Math.max(best, score);
+    el.best.textContent = sprint ? (bestTime ? formatTime(bestTime) : '-') : Math.max(best, score);
+    el.time.textContent = formatTime(elapsed);
   }
 
   function showOverlay(title, text, showShare = false) {
@@ -365,6 +399,7 @@
         }
       }
 
+      elapsed += dt;
       dropTimer += dt;
       const interval = softDropping ? Math.min(50, dropInterval) : dropInterval;
       while (dropTimer >= interval) {
@@ -410,6 +445,7 @@
     const key = e.key;
 
     if (key === 'r' || key === 'R') { reset(); return; }
+    if (key === 'm' || key === 'M') { setMode(!sprint); return; }
     if (key === 'p' || key === 'P') { e.preventDefault(); togglePause(); return; }
     if (paused || gameOver) return;
 
@@ -462,6 +498,7 @@
   });
 
   el.restart.addEventListener('click', reset);
+  el.mode.addEventListener('click', (e) => { e.currentTarget.blur(); setMode(!sprint); });
   el.overlay.addEventListener('click', () => { if (gameOver) reset(); else togglePause(); });
   el.shareScore.addEventListener('click', (e) => {
     e.stopPropagation();

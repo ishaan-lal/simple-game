@@ -110,6 +110,11 @@ h2 {
 
 .btn:hover { border-color: var(--accent); color: var(--accent); }
 
+#mode { margin-top: auto; }
+#mode + .btn { margin-top: 8px; }
+
+.stat.hidden { display: none; }
+
 .overlay {
   position: absolute;
   inset: 0;
