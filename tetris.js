@@ -140,7 +140,7 @@
       gameOver = true;
       if (score > best) {
         best = score;
-        localStorage.setItem('tetris-best', String(best));
+        localStorage.setItem('tetris-best-score', String(best));
       }
       updateStats();
       showOverlay('Game over', `Score ${score} — press R to play again`, true);
@@ -233,7 +233,7 @@
 
     lines += cleared;
     score += LINE_SCORE[cleared] * level;
-    level = Math.floor(lines / 10) + 1;
+    level = Math.floor(lines / 5) + 1;
     dropInterval = SPEEDS[Math.min(level - 1, SPEEDS.length - 1)];
     updateStats();
   }
@@ -386,7 +386,7 @@
   function togglePause() {
     if (gameOver) return;
     paused = !paused;
-    if (paused) showOverlay('Paused', 'Press P to resume');
+    if (paused) showOverlay('Paused', 'Press Space to resume');
     else hideOverlay();
   }
 
