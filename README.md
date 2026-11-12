@@ -28,6 +28,7 @@ python3 -m http.server 8000   # then visit http://localhost:8000
 | `C` or `Shift` | Hold / swap piece (once per piece) |
 | `P` | Pause |
 | `R` | New game |
+| `M` | Switch between Marathon and Sprint mode |
 
 On phones and narrow screens, on-screen buttons appear below the board.
 
@@ -43,6 +44,9 @@ On phones and narrow screens, on-screen buttons appear below the board.
   down to 50 ms.
 - A translucent ghost shows where a hard drop will land.
 - Best score is kept in `localStorage`.
+- Sprint mode (press `M` or use the mode button): clear 40 lines as fast as you
+  can. A timer runs from the start of the game and stops at 40 lines; your best
+  sprint time is kept in `localStorage`. Marathon is the default endless mode.
 
 ## Files
 
