@@ -22,7 +22,7 @@ python3 -m http.server 8000   # then visit http://localhost:8000
 | --- | --- |
 | `←` `→` | Move left / right (hold to repeat) |
 | `↓` | Soft drop (+1 point per cell) |
-| `Space` | Hard drop (+2 points per cell) |
+| `Space` | Hard drop (+2 points per cell); resumes when paused |
 | `↑` or `X` | Rotate clockwise |
 | `Z` | Rotate counter-clockwise |
 | `C` or `Shift` | Hold / swap piece (once per piece) |
