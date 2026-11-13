@@ -435,7 +435,7 @@
       case 'z':
       case 'Z':
         e.preventDefault();
-        if (!e.repeat) act('rotate');
+        if (!e.repeat) act('rotateLeft');
         break;
       case ' ':
         e.preventDefault();
