@@ -140,7 +140,7 @@
       gameOver = true;
       if (score > best) {
         best = score;
-        localStorage.setItem('tetris-best-score', String(best));
+        localStorage.setItem('tetris-best', String(best));
       }
       updateStats();
       showOverlay('Game over', `Score ${score} — press R to play again`, true);
@@ -435,7 +435,7 @@
       case 'z':
       case 'Z':
         e.preventDefault();
-        if (!e.repeat) act('rotateLeft');
+        if (!e.repeat) act('rotate');
         break;
       case ' ':
         e.preventDefault();
