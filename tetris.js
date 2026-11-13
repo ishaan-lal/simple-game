@@ -386,7 +386,7 @@
   function togglePause() {
     if (gameOver) return;
     paused = !paused;
-    if (paused) showOverlay('Paused', 'Press Space to resume');
+    if (paused) showOverlay('PAUSED', 'Press Space to resume');
     else hideOverlay();
   }
 
@@ -411,6 +411,7 @@
 
     if (key === 'r' || key === 'R') { reset(); return; }
     if (key === 'p' || key === 'P') { e.preventDefault(); togglePause(); return; }
+    if (key === ' ' && paused) { e.preventDefault(); togglePause(); return; }
     if (paused || gameOver) return;
 
     switch (key) {
