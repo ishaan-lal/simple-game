@@ -233,7 +233,7 @@
 
     lines += cleared;
     score += LINE_SCORE[cleared] * level;
-    level = Math.floor(lines / 5) + 1;
+    level = Math.floor(lines / 10) + 1;
     dropInterval = SPEEDS[Math.min(level - 1, SPEEDS.length - 1)];
     updateStats();
   }
