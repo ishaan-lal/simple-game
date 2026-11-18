@@ -1,4 +1,4 @@
-# Tetris
+# Block Fall
 
 A small browser Tetris. Play it here: https://ishaan-lal.github.io/simple-game/
 

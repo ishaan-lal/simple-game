@@ -465,7 +465,7 @@
   el.overlay.addEventListener('click', () => { if (gameOver) reset(); else togglePause(); });
   el.shareScore.addEventListener('click', (e) => {
     e.stopPropagation();
-    navigator.clipboard.writeText(`I scored ${score} points in Tetris!`).then(() => {
+    navigator.clipboard.writeText(`I scored ${score} points in Block Fall!`).then(() => {
       const original = el.shareScore.textContent;
       el.shareScore.textContent = 'Copied!';
       setTimeout(() => { el.shareScore.textContent = original; }, 1500);
