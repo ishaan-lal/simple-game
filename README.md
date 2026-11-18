@@ -1,6 +1,6 @@
 # Block Fall
 
-A small browser block-stacking game. No build step, no dependencies — three static files.
+A small browser Block Fall. Play it here: https://ishaan-lal.github.io/simple-game/
 
 ## Play
 
