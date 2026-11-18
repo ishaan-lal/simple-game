@@ -1,4 +1,4 @@
-/* A small, dependency-free block-stacking game. */
+/* A small, dependency-free Block Fall. */
 (() => {
   'use strict';
 
