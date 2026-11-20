@@ -58,7 +58,6 @@
     overlay: document.getElementById('overlay'),
     overlayTitle: document.getElementById('overlay-title'),
     overlayText: document.getElementById('overlay-text'),
-    shareScore: document.getElementById('share-score'),
     restart: document.getElementById('restart'),
   };
 
@@ -143,7 +142,7 @@
         localStorage.setItem('tetris-best', String(best));
       }
       updateStats();
-      showOverlay('Game over', `Score ${score} — press R to play again`, true);
+      showOverlay('Game over', `Score ${score} — press R to play again`);
     }
   }
 
@@ -336,11 +335,10 @@
     el.best.textContent = Math.max(best, score);
   }
 
-  function showOverlay(title, text, showShare) {
+  function showOverlay(title, text) {
     el.overlayTitle.textContent = title;
     el.overlayText.textContent = text;
     el.overlay.classList.remove('hidden');
-    el.shareScore.classList.toggle('hidden', !showShare);
   }
 
   function hideOverlay() {
@@ -463,13 +461,6 @@
 
   el.restart.addEventListener('click', reset);
   el.overlay.addEventListener('click', () => { if (gameOver) reset(); else togglePause(); });
-
-  el.shareScore.addEventListener('click', (e) => {
-    e.stopPropagation();
-    navigator.clipboard.writeText(`I scored ${score} points in Tetris!`);
-    el.shareScore.textContent = 'Copied!';
-    setTimeout(() => { el.shareScore.textContent = 'Share score'; }, 1500);
-  });
 
   document.querySelectorAll('.touch button').forEach((button) => {
     const name = button.dataset.act;

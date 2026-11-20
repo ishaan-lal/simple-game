@@ -126,9 +126,6 @@ h2 {
 
 .overlay.hidden { display: none; }
 
-#share-score { margin-top: 4px; }
-#share-score.hidden { display: none; }
-
 #overlay-title {
   margin: 0;
   font-size: 24px;
